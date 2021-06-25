@@ -1,4 +1,4 @@
-const calculateDueDate = require('./calculate');
+const calculateDueDate = require('./calculate-due-date');
 
 describe('no or invalid input', () => {
   it('should give error when no submit date input', () => {
