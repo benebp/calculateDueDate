@@ -1,0 +1,22 @@
+{
+  "name": "calculate-due-date",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benebp/calculateDueDate.git"
+  },
+  "author": "benebp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benebp/calculateDueDate/issues"
+  },
+  "homepage": "https://github.com/benebp/calculateDueDate#readme",
+  "dependencies": {
+    "jest": "^27.0.5"
+  }
+}
