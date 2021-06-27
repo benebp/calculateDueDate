@@ -25,16 +25,22 @@ describe('no or invalid input', () => {
 		expect(result).toThrowError('inputs are not valid');
 	});
 
-	it('should give error when input turnaround time is not number', () => {
-		const result = calculateDueDate({ submitDate: '2021-05-18T13:50', turnaroundTime: undefined });
-
-		expect(result).toThrowError('inputs are not valid');
+	it.only('should give error when input turnaround time is not number', () => {
+		expect(() => {
+			calculateDueDate({ submitDate: '2021-05-18T13:50', turnaroundTime: 'hour' });
+		}).toThrowError('inputs are not valid');
 	});
 
 	it('should give error when input submit date is not in working hours', () => {
-		const result = calculateDueDate({ submitDate: '2021-05-16T13:50', turnaroundTime: 16 });
+		expect(() => {
+			calculateDueDate({ submitDate: '2021-05-16T13:50', turnaroundTime: 16 });
+		}).toThrowError('out of working hours');
+	});
 
-		expect(result).toThrowError('not working hours');
+	it('should give error when input submit hour is not in working hours', () => {
+		expect(() => {
+			calculateDueDate({ submitDate: '2021-05-17T19:50', turnaroundTime: 16 });
+		}).toThrowError('out of working hours');
 	});
 });
 
