@@ -1,7 +1,7 @@
 'use strict';
 
 const calculateDueDate = ({ submitDate, turnaroundTime } = {}) => {
-  let finishDate;
+  let dueDate;
   if (!submitDate || !turnaroundTime) {
    throw new Error('One or both inputs are not given.');
   }
@@ -23,7 +23,17 @@ const calculateDueDate = ({ submitDate, turnaroundTime } = {}) => {
     throw new Error('Submit date is out of working hours.');
   }
 
-  return finishDate;
+  if (turnaroundTime + hour <= 17) {
+    dueDate = submitDateFormat.setHours(turnaroundTime + hour);
+  } else {
+    dueDate = submitDateFormat.setHours(turnaroundTime + hour + 16);
+    dueDate = new Date(dueDate);
+    if (dueDate.getDay() === 0 || dueDate.getDay() === 6) {
+      dueDate = dueDate.setHours(dueDate.getHours() + 48);
+    }
+  }
+
+  return new Date(dueDate);
 }
 
 module.exports = calculateDueDate;
