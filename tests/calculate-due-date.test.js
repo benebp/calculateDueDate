@@ -45,9 +45,21 @@ describe('no or invalid input', () => {
 });
 
 describe('valid input', () => {
-	it('should give valid output when input is valid too', () => {
-		const result = calculateDueDate({ submitDate: '2021-05-18T13:50', turnaroundTime: 16 });
+	it('should give valid output when input is valid and due on the same day', () => {
+		const result = calculateDueDate({ submitDate: '2021-05-18T13:50', turnaroundTime: 3 });
 
-		expect(result).toEqual('2021-05-20T13:50');
+		expect(result).toEqual(new Date('2021-05-18T16:50'));
+	});
+
+	it('should give valid output when input is valid and due on the next day which is a workday too', () => {
+		const result = calculateDueDate({ submitDate: '2021-05-18T13:50', turnaroundTime: 8 });
+
+		expect(result).toEqual(new Date('2021-05-19T13:50'));
+	});
+
+	it('should give valid output when input is valid and due on the next day which is not a workday', () => {
+		const result = calculateDueDate({ submitDate: '2021-05-21T13:50', turnaroundTime: 8 });
+
+		expect(result).toEqual(new Date('2021-05-24T13:50'));
 	});
 });
