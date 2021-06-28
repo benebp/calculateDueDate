@@ -7,10 +7,10 @@ installation
 
 about the method:
 - method inputs:
-  - submit date/time
-  - turnaround time
+  - submit date/time (format: year-month-dayThour:minute, example: "2021-06-01T12:00")
+  - turnaround time (integer)
 - method output:
-  - date/time of finish
+  - date/time of finish (format is same as submit date)
 
 running tests:
   - run npm test
